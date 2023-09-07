@@ -10,5 +10,11 @@ const char puzzle_input = "()(((()))(()()()((((()(((())(()(()((((((()(()(((())))
 
 int main (void)
 {
+    // check practice
+    if (FindFloor(&practice_input, sizeof(practice_input) != PRACTICE_RESULT) {
+        // practice input failed
+        printf("Practice input failed\n");
+        return -1;
+    }
     return 0;
 }
