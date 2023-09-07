@@ -18,6 +18,8 @@ int main (void)
         printf("Practice input failed, return value %i, expected value %i. \n", ret, PRACTICE_RESULT);
         return -1;
     }
+
+    printf("Instructions take Santa to floor %i\n.", FindFloor((char*)&puzzle_input, sizeof(puzzle_input)));
     
     return 0;
 }
