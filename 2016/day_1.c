@@ -33,6 +33,8 @@ int DetermineBlocksAwayFromHQ(char *input, int size_of_input)
 
         if (direction != No_Direction) {
             int number_of_steps = GetNumberOfSteps(input, size_of_input, i);
+
+            // todo change direction and determine blocks away
         }
 
         // increase i by 1, move a position higher than the currently found direction
