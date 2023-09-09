@@ -19,7 +19,7 @@ bool IsNumber(char number);
 
 int main (void)
 {
-    printf("Easter bunny HQ is %i blocks away. /n", DetermineBlocksAwayFromHQ((char *)practice_input_1, sizeof(practice_input_1)));
+    printf("Easter bunny HQ is %i blocks away.\n", DetermineBlocksAwayFromHQ((char *)practice_input_1, sizeof(practice_input_1)));
 }
 
 int DetermineBlocksAwayFromHQ(char *input, int size_of_input)
@@ -69,7 +69,7 @@ int GetNumberOfSteps(char *input, int size_of_input, int direction_position)
     int number_of_steps = 0;
     
     for (int i = direction_position + 1; i < size_of_input; i++) {
-        if (IsNumber(input[i]) {
+        if (IsNumber(input[i])) {
             // increase number of steps by 10 for the next number to be added
             number_of_steps *= 10;
             // add in the number, offset to its int value by subtracting '0' ascii
@@ -82,5 +82,5 @@ int GetNumberOfSteps(char *input, int size_of_input, int direction_position)
 
 bool IsNumber(char number)
 {
-    return (number >= '0' && number =< '9');
+    return (number >= '0' && number <= '9');
 }
