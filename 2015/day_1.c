@@ -2,8 +2,6 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define BASEMENT_FLOOR  (-1)
-
 int FindFloor(char *inputs, int size_of_input);
 int GetFloorDirection(char input);
 void FindBasementPosition(int floor, int position);
