@@ -8,6 +8,13 @@ typedef enum {
     Right,
 } Direction_e;
 
+typedef enum {
+    North,
+    East,
+    South,
+    West,
+} Compass_e;
+
 const char practice_input_1[] = "R2, R2, R2";
 const char practice_input_2[] = "R5, L5, R5, R3";
 
@@ -16,6 +23,8 @@ int SearchForNextDirection(char *input, int size_of_input, int current_position)
 Direction_e GetDirection(char direction);
 int GetNumberOfSteps(char *input, int size_of_input, int direction_position);
 bool IsNumber(char number);
+int GetBlocksAwayFromPosition(Direction_e direction, int number_of_steps);
+int CalculateBlocksAwayFromPosition(int x, int y);
 
 int main (void)
 {
@@ -34,7 +43,7 @@ int DetermineBlocksAwayFromHQ(char *input, int size_of_input)
         if (direction != No_Direction) {
             int number_of_steps = GetNumberOfSteps(input, size_of_input, i);
 
-            // todo change direction and determine blocks away
+            blocks_away = GetBlocksAwayFromPosition(direction, number_of_steps);
         }
 
         // increase i by 1, move a position higher than the currently found direction
@@ -85,4 +94,51 @@ int GetNumberOfSteps(char *input, int size_of_input, int direction_position)
 bool IsNumber(char number)
 {
     return (number >= '0' && number <= '9');
+}
+
+int GetBlocksAwayFromPosition(Direction_e direction, int number_of_steps)
+{
+    static Compass_e compass = North;
+    static int x = 0, y = 0;
+
+    if (compass == North && direction == Right) {
+        compass = East;
+        x += number_of_steps;
+    } else if (compass == North && direction == Left) {
+        compass = West;
+        x -= number_of_steps;
+    } else if (compass == East && direction == Right) {
+        compass = South;
+        y -= number_of_steps;
+    } else if (compass == East && direction == Left) {
+        compass = North;
+        y += number_of_steps;
+    } else if (compass == South && direction == Right) {
+        compass = West;
+        x -= number_of_steps;
+    } else if (compass == South && direction == Left) {
+        compass = East;
+        x += number_of_steps;
+    } else if (compass == West && direction == Right) {
+        compass = North;
+        y += number_of_steps;
+    } else if (compass == West && direction == Left) {
+        compass = South;
+        y -= number_of_steps;
+    }
+
+    return CalculateBlocksAwayFromPosition(x, y);
+}
+
+int CalculateBlocksAwayFromPosition(int x, int y)
+{
+    if (x < 0) {
+        x *= -1;
+    }
+
+    if (y < 0) {
+        y *= -1;
+    }
+
+    return (x + y);
 }
