@@ -13,3 +13,10 @@
 /// @return file pointer to the puzzle text
 /// @note   this file does not deal with error handling if the file does not exist
 FILE* GetPuzzleFile(char* name_of_puzzle_text_file);
+
+/// @brief  error checking for the puzzle file pointer
+/// @param  pointer_to_puzzle_file the file pointer that holds the address to the puzzle
+///         file
+/// @note   checks whether or not the puzzle file is real, if the puzzle file is not real
+///         an error will be displayed and the program will be exited
+void IsPuzzleFileValid(FILE* pointer_to_puzzle_file);
