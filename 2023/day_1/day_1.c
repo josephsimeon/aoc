@@ -6,3 +6,11 @@
 //! @url        https://github.com/josephsimeon/aoc/2023
 
 #include "../../common/puzzle.h"
+
+int main (void)
+{
+    FILE* pointer_to_puzzle_file = GetPuzzleFile("puzz.txt");
+    CheckValidityOfPuzzleFile(pointer_to_puzzle_file);
+
+    return 0;
+}

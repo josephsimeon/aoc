@@ -23,7 +23,7 @@ FILE* GetPuzzleFile(char* name_of_puzzle_text_file)
 ///         file
 /// @note   checks whether or not the puzzle file is real, if the puzzle file is not real
 ///         an error will be displayed and the program will be exited
-void IsPuzzleFileValid(FILE* pointer_to_puzzle_file)
+void CheckValidityOfPuzzleFile(FILE* pointer_to_puzzle_file)
 {
     if (pointer_to_puzzle_file == NULL) {
         // NULL'd pointer to the puzzle file would mean that the file does not exist
