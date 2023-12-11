@@ -10,12 +10,19 @@
 #include "puzzle.h"
 
 /// @brief  get the puzzle file pointer
-/// @param  name_of_puzzle_text_file puzzle text filename
 /// @return file pointer to the puzzle text
 /// @note   this file does not deal with error handling if the file does not exist
-FILE* GetPuzzleFile(char* name_of_puzzle_text_file)
+FILE* GetPuzzleFile(void)
 {
-    return fopen(name_of_puzzle_text_file, "r");
+    return fopen("puzzle.txt", "r");
+}
+
+/// @brief  get the test puzzle file pointer
+/// @return file pointer to the puzzle text
+/// @note   this file does not deal with error handling if the file does not exist
+FILE* GetTestPuzzleFile(void)
+{
+    return fopen("test_puzzle.txt", "r");
 }
 
 /// @brief  error checking for the puzzle file pointer

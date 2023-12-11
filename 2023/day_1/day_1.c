@@ -9,7 +9,7 @@
 
 int main (void)
 {
-    FILE* pointer_to_puzzle_file = GetPuzzleFile("puzz.txt");
+    FILE* pointer_to_puzzle_file = GetPuzzleFile();
     CheckValidityOfPuzzleFile(pointer_to_puzzle_file);
 
     return 0;
