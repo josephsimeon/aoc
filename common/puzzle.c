@@ -9,8 +9,8 @@
 #include <stdlib.h>
 #include "puzzle.h"
 
-puzzle_output_t puzzle_output; ///< global variable that stores the string of a puzzle
-                               ///< as well as the length of that string
+puzzle_output_t puzzle_output; ///< global variable that stores the string of a puzzle as well as the length of that string
+FILE* pointer_to_puzzle_file; ///< global variable pointer to the puzzle file
 
 /// @brief  get the puzzle file pointer
 /// @return file pointer to the puzzle text
@@ -40,4 +40,21 @@ void CheckValidityOfPuzzleFile(FILE* pointer_to_puzzle_file)
         printf("Error: Puzzle file may not exist or name is wrong.\n");
         exit(0);
     }
+}
+
+/// @brief  check if file pointer is still valid
+/// @return true or false
+bool IsPuzzleFileStillValid(void)
+{
+    return (puzzle_output.b_end_of_file);
+}
+
+/// @brief  getting string from the puzzle file
+/// @param  pointer_to_puzzle_file the file pointer that holds the address to the puzzle
+///         file
+/// @return puzzle output struct that holds the string from a line of the puzzel file and
+///         length
+puzzle_output_t *GetStringFromPuzzleFile(FILE* pointer_to_puzzle_file)
+{
+    return &puzzle_output;
 }
