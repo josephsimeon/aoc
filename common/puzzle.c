@@ -10,23 +10,6 @@
 #include "puzzle.h"
 
 puzzle_output_t puzzle_output; ///< global variable that stores the string of a puzzle as well as the length of that string
-FILE* pointer_to_puzzle_file; ///< global variable pointer to the puzzle file
-
-/// @brief  get the puzzle file pointer
-/// @return file pointer to the puzzle text
-/// @note   this file does not deal with error handling if the file does not exist
-FILE* GetPuzzleFile(void)
-{
-    return fopen("puzzle.txt", "r");
-}
-
-/// @brief  get the test puzzle file pointer
-/// @return file pointer to the puzzle text
-/// @note   this file does not deal with error handling if the file does not exist
-FILE* GetTestPuzzleFile(void)
-{
-    return fopen("test_puzzle.txt", "r");
-}
 
 /// @brief  error checking for the puzzle file pointer
 /// @param  pointer_to_puzzle_file the file pointer that holds the address to the puzzle

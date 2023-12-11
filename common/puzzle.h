@@ -6,6 +6,9 @@
 //! @date       11/12/2023 19:48
 //! @url        https://github.com/josephsimeon/aoc/common
 
+#ifndef __PUZZLE_H__
+#define __PUZZLE_H__
+
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -15,16 +18,6 @@ typedef struct {
     int puzzle_string_len;
     bool b_end_of_file;
 } puzzle_output_t;
-
-/// @brief  get the puzzle file pointer
-/// @return file pointer to the puzzle text
-/// @note   this file does not deal with error handling if the file does not exist
-FILE* GetPuzzleFile(void);
-
-/// @brief  get the test puzzle file pointer
-/// @return file pointer to the puzzle text
-/// @note   this file does not deal with error handling if the file does not exist
-FILE* GetTestPuzzleFile(void);
 
 /// @brief  error checking for the puzzle file pointer
 /// @param  pointer_to_puzzle_file the file pointer that holds the address to the puzzle
@@ -43,3 +36,6 @@ bool IsPuzzleFileStillValid(void);
 /// @return puzzle output struct that holds the string from a line of the puzzel file and
 ///         length
 puzzle_output_t *GetStringFromPuzzleFile(FILE* pointer_to_puzzle_file);
+
+#endif //__PUZZLE_H__
+
