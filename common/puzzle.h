@@ -37,5 +37,9 @@ bool IsPuzzleFileStillValid(void);
 ///         length
 puzzle_output_t *GetStringFromPuzzleFile(FILE* pointer_to_puzzle_file);
 
+/// @brief  error checking for the valid string length
+/// @note   exit if the string length reaches near max
+void CheckValidityOfPuzzleFileStringLength(FILE* pointer_to_puzzle_file);
+
 #endif //__PUZZLE_H__
 

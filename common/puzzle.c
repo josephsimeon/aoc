@@ -7,6 +7,7 @@
 //! @url        https://github.com/josephsimeon/aoc/common
 
 #include <stdlib.h>
+#include <string.h>
 #include "puzzle.h"
 
 puzzle_output_t puzzle_output; ///< global variable that stores the string of a puzzle as well as the length of that string
@@ -37,7 +38,27 @@ bool IsPuzzleFileStillValid(void)
 ///         file
 /// @return puzzle output struct that holds the string from a line of the puzzel file and
 ///         length
+/// @note   string length needs to be checked, it needs to be less than string length
 puzzle_output_t *GetStringFromPuzzleFile(FILE* pointer_to_puzzle_file)
 {
+    puzzle_output.b_end_of_file (fgets(puzzle_output.puzzle_string, PUZZLE_STRING_MAX_VALUE, pointer_to_puzzle_file) == NULL);
+    puzzle_output.puzzle_string_len = strlen(puzzle_output.puzzle_string);
+
+    CheckValidityOfPuzzleFileStringLength();
+
     return &puzzle_output;
+}
+
+/// @brief  error checking for the valid string length
+/// @param  pointer_to_puzzle_file the file pointer that holds the address to the puzzle
+///         file
+/// @note   exit if the string length reaches near max
+void CheckValidityOfPuzzleFileStringLength(FILE* pointer_to_puzzle_file)
+{
+    if (puzzle_output.puzzle_string_len == (PUZZLE_STRING_MAX_VALUE - 1)) {
+        // string length is larger than expected, the string needs to be bigger
+        printf("Error: Increase the size of the puzzle_output string.\n");
+        fclose(pointer_to_puzzle_file);
+        exit(0);
+    }
 }
