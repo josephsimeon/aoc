@@ -1,5 +1,6 @@
 //! @file       day_1.c
-//! @brief
+//! @brief      first part of the challenge is to find the first and last digit of each
+//!             string and then sum them all together
 //!
 //! @author     Joseph Simeon
 //! @date       11/12/2023 19:48
@@ -11,6 +12,8 @@ int main (void)
 {
     FILE* pointer_to_puzzle_file = GetPuzzleFile();
     CheckValidityOfPuzzleFile(pointer_to_puzzle_file);
+
+    puzzle_output_t* pointer_to_puzzle_output;
 
     return 0;
 }

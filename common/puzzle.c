@@ -9,6 +9,9 @@
 #include <stdlib.h>
 #include "puzzle.h"
 
+puzzle_output_t puzzle_output; ///< global variable that stores the string of a puzzle
+                               ///< as well as the length of that string
+
 /// @brief  get the puzzle file pointer
 /// @return file pointer to the puzzle text
 /// @note   this file does not deal with error handling if the file does not exist
