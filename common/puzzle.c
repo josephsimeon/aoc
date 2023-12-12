@@ -3,8 +3,10 @@
 //!             puzzle information in the more generic manor.
 //!
 //! @author     Joseph Simeon
-//! @date       11/12/2023 19:48
+//! @date       Created: 11/12/2023 19:48
 //! @url        https://github.com/josephsimeon/aoc/common
+//!
+//! @date       Last updated: 12/12/2023 21:12
 
 #include <stdlib.h>
 #include <string.h>
@@ -30,7 +32,7 @@ void CheckValidityOfPuzzleFile(FILE* pointer_to_puzzle_file)
 /// @return true or false
 bool IsPuzzleFileStillValid(void)
 {
-    return (puzzle_output.b_end_of_file);
+    return (!puzzle_output.b_end_of_file);
 }
 
 /// @brief  getting string from the puzzle file
@@ -41,10 +43,14 @@ bool IsPuzzleFileStillValid(void)
 /// @note   string length needs to be checked, it needs to be less than string length
 puzzle_output_t *GetStringFromPuzzleFile(FILE* pointer_to_puzzle_file)
 {
-    puzzle_output.b_end_of_file (fgets(puzzle_output.puzzle_string, PUZZLE_STRING_MAX_VALUE, pointer_to_puzzle_file) == NULL);
+    // clear the memory of the puzzle string
+    memset(puzzle_output.puzzle_string, '0', PUZZLE_STRING_MAX_VALUE);
+    // set the bool for end of file by grabbing the next string and the result is nulled
+    puzzle_output.b_end_of_file = (fgets(puzzle_output.puzzle_string, PUZZLE_STRING_MAX_VALUE, pointer_to_puzzle_file) == NULL);
+    // grab the string length, if the memset is still 0, the string length will be 0
     puzzle_output.puzzle_string_len = strlen(puzzle_output.puzzle_string);
 
-    CheckValidityOfPuzzleFileStringLength();
+    CheckValidityOfPuzzleFileStringLength(pointer_to_puzzle_file);
 
     return &puzzle_output;
 }
@@ -61,4 +67,14 @@ void CheckValidityOfPuzzleFileStringLength(FILE* pointer_to_puzzle_file)
         fclose(pointer_to_puzzle_file);
         exit(0);
     }
+}
+
+/// @brief  check if the character is an ascii value of a digit
+/// @param  ascii_character a value between 0-255 that corresponds to an ascii character
+/// @return true or false
+bool IsCharFromPuzzleFileADigit(char ascii_character)
+{
+    // ascii value of '0' is 0x30 and the ascii value of '9' is 0x39 so that an
+    // ascii character that is a digit is between the values of 0x30 & 0x39 including
+    return ((ascii_character >= '0') && (ascii_character <= '9'));
 }

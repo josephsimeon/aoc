@@ -3,8 +3,10 @@
 //!             puzzle information in the more generic manor.
 //!
 //! @author     Joseph Simeon
-//! @date       11/12/2023 19:48
+//! @date       Created: 11/12/2023 19:48
 //! @url        https://github.com/josephsimeon/aoc/common
+//!
+//! @date       Last updated: 12/12/2023 21:12
 
 #ifndef __PUZZLE_H__
 #define __PUZZLE_H__
@@ -41,5 +43,9 @@ puzzle_output_t *GetStringFromPuzzleFile(FILE* pointer_to_puzzle_file);
 /// @note   exit if the string length reaches near max
 void CheckValidityOfPuzzleFileStringLength(FILE* pointer_to_puzzle_file);
 
-#endif //__PUZZLE_H__
+/// @brief  check if the character is an ascii value of a digit
+/// @param  ascii_character a value between 0-255 that corresponds to an ascii character
+/// @return true or false
+bool IsCharFromPuzzleFileADigit(char ascii_character);
 
+#endif // __PUZZLE_H__
