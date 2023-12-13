@@ -17,11 +17,13 @@ int main (void)
     puzzle_output_t* pointer_to_puzzle_output;
     int sum = 0;
 
+    // get the first line starting the process before entering into the loop
+    pointer_to_puzzle_output = GetStringFromPuzzleFile(pointer_to_puzzle_file);
     while (IsPuzzleFileStillValid()) {
-        pointer_to_puzzle_output = GetStringFromPuzzleFile(pointer_to_puzzle_file);
-
         puzzle_output_string_digits_t digits = ProcessPuzzleStringToFindDigits(pointer_to_puzzle_output);
         sum += ProcessCharacterDigitsToInteger(digits);
+    
+        pointer_to_puzzle_output = GetStringFromPuzzleFile(pointer_to_puzzle_file);
     }
 
     printf("Sum of the digits from the puzzle is %i.\n", sum);
