@@ -1,6 +1,5 @@
 //! @file       puzzle.h
-//! @brief      This file holds common functions regarding retrieval and processing of
-//!             puzzle information in the more generic manor.
+//! @brief      This file holds common functions regarding retrieval and processing of puzzle information in the more generic manor.
 //!
 //! @author     Joseph Simeon
 //! @date       Created: 11/12/2023 19:48
@@ -74,7 +73,16 @@ void CheckValidityOfPuzzleFileStringLength(FILE* pointer_to_puzzle_file)
 /// @return true or false
 bool IsCharFromPuzzleFileADigit(char ascii_character)
 {
-    // ascii value of '0' is 0x30 and the ascii value of '9' is 0x39 so that an
-    // ascii character that is a digit is between the values of 0x30 & 0x39 including
+    // ascii value of '0' is 0x30 and the ascii value of '9' is 0x39 so that an ascii character that is a digit is between 
+    // the values of 0x30 & 0x39 including
     return ((ascii_character >= '0') && (ascii_character <= '9'));
+}
+
+/// @brief  check if the character is an ascii value of an alphabet character
+/// @param  ascii_character a value between 0-255 that corresponds to an ascii character
+/// @return true or false
+bool IsCharFromPuzzleFileAnAlpha(char ascii_character)
+{
+    // check if ascii value of lowercase or uppercase 'a' is inbetween lowercase or uppercase 'z' respectively
+    return (((ascii_character >= 'a') && (ascii_character <= 'z')) || ((ascii_character >= 'A') && (ascii_character <= 'Z')));
 }

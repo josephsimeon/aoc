@@ -48,4 +48,9 @@ void CheckValidityOfPuzzleFileStringLength(FILE* pointer_to_puzzle_file);
 /// @return true or false
 bool IsCharFromPuzzleFileADigit(char ascii_character);
 
+/// @brief  check if the character is an ascii value of an alphabet character
+/// @param  ascii_character a value between 0-255 that corresponds to an ascii character
+/// @return true or false
+bool IsCharFromPuzzleFileAnAlpha(char ascii_character);
+
 #endif // __PUZZLE_H__
