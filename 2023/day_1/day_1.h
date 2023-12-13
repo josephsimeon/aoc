@@ -39,4 +39,9 @@ void SaveFoundCharacterDigit(puzzle_output_string_digits_t* pointer_to_string_di
 /// @return an integer that is made up of two ascii numbers
 int ProcessCharacterDigitsToInteger(puzzle_output_string_digits_t digits);
 
+/// @brief  find
+char FindCharacterDigitBasedOnDigitStrinf(puzzle_output_t* pointer_to_puzzle_output, int string_position);
+
+int MoveProcessingPositionBasedOnFoundDigitString(char character_digit, int string_position);
+
 #endif // __DAY_1_H__
