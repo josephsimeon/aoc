@@ -10,6 +10,7 @@
 //!
 //! @date       Last updated: 12/12/2023 21:12
 
+#include <string.h>
 #include "day_1.h"
 
 /// @brief  processes the puzzle to return the digits found in the string
@@ -91,30 +92,23 @@ int ProcessCharacterDigitsToInteger(puzzle_output_string_digits_t digits)
     return converted_integer;
 }
 
-/// @brief  check if the character is the starting character of a specific string
-/// @param  character_to_check character to check if it is the starting character of specific string
-/// @return true or false
-/// @note   all characters within this puzzle are lowercase
-bool IsCharacterDigitTheStartOfASpecificString(char character_to_check)
-{
-    // specific strings: zero, one, two, three, four, five, six, seven, eight, nine
-    // checking against the starting character to these specific strings
-    return ((character_to_check == 'z') ||
-            (character_to_check == 'o') ||
-            (character_to_check == 't') ||
-            (character_to_check == 'f') ||
-            (character_to_check == 's') ||
-            (character_to_check == 'e') ||
-            (character_to_check == 'n'));
-}
-
 /// @brief  find the character digit that is spelled out in the string
 /// @param  pointer_to_puzzle_output pointer that holds the address of the puzzle output struct
 /// @param  string_position gives the position of the starting character of the possible
 /// @return digit character with an ascii value of '0' to '9' or nulled
-char FindCharacterDigitWithinString(puzzle_output_t* pointer_to_puzzle_output, int string_position)
+char FindCharacterDigitWithinString(puzzle_output_t* pointer_to_puzzle_output, int string_position);
 {
-    // todo
+    for (int i = 0; i < 10; i++) {
+        if (pointer_to_puzzle_output->puzzle_string[string_position] == GetReferenceDigitStringFirstCharacter(i)) {
+            int string_compare_output = strncmp(pointer_to_puzzle_output->puzzle_string[string_position], 
+                                                GetReferenceDigitString(i), 
+                                                GetReferenceDigitStringSize(i));
+            if (string_compare_output == 0) {
+                return (i + STARTING_ZERO_ASCII_VALUE);
+            }
+        }
+    }
+
     return NULLED_ASCII_CHARACTER;
 }
 
@@ -123,53 +117,64 @@ char FindCharacterDigitWithinString(puzzle_output_t* pointer_to_puzzle_output, i
 /// @param  current_processing_position current position in the processing
 int MoveProcessingPositionBasedOnFoundDigitString(char character_digit, int current_processing_position)
 {
-    int new_position_offset;
+    return (current_processing_position + GetReferenceDigitStringSize(character_digit - STARTING_ZERO_ASCII_VALUE));
+}
 
-    switch (character_digit) {
-        case '0':
-            new_position_offset = strlen("zero");
-            break;
+{
+    static char digit_string[] = {
+        "zero",
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine"
+    };
 
-        case '1':
-            new_position_offset = strlen("one");
-            break;
-
-        case '2':
-            new_position_offset = strlen("two");
-            break;
-
-        case '3':
-            new_position_offset = strlen("three");
-            break;
-
-        case '4':
-            new_position_offset = strlen("four");
-            break;
-
-        case '5':
-            new_position_offset = strlen("five");
-            break;
-
-        case '6':
-            new_position_offset = strlen("six");
-            break;
-
-        case '7':
-            new_position_offset = strlen("seven");
-            break;
-
-        case '8':
-            new_position_offset = strlen("eight");
-            break;
-
-        case '9':
-            new_position_offset = strlen("nine");
-            break;
-
-        default:
-            new_position_offset = NULLED_ASCII_CHARACTER;
-            break;
+    /// @brief  check if the character is the starting character of a specific string
+    /// @param  character_to_check character to check if it is the starting character of specific string
+    /// @return true or false
+    /// @note   all characters within this puzzle are lowercase
+    bool IsCharacterDigitTheStartOfASpecificString(char character_to_check)
+    {
+        // specific strings: zero, one, two, three, four, five, six, seven, eight, nine
+        // checking against the starting character to these specific strings
+        return ((character_to_check == GetReferenceDigitStringFirstCharacter(0)) ||
+                (character_to_check == GetReferenceDigitStringFirstCharacter(1)) ||
+                (character_to_check == GetReferenceDigitStringFirstCharacter(2)) ||
+                (character_to_check == GetReferenceDigitStringFirstCharacter(3)) ||
+                (character_to_check == GetReferenceDigitStringFirstCharacter(4)) ||
+                (character_to_check == GetReferenceDigitStringFirstCharacter(5)) ||
+                (character_to_check == GetReferenceDigitStringFirstCharacter(6)) ||
+                (character_to_check == GetReferenceDigitStringFirstCharacter(7)) ||
+                (character_to_check == GetReferenceDigitStringFirstCharacter(8)) ||
+                (character_to_check == GetReferenceDigitStringFirstCharacter(9)));
     }
 
-    return (current_processing_position + new_position_offset);
+    /// @brief  get a reference digit string first character from a variable that holds the string
+    /// @param  string_number number corresponds to a digit string within the list of digit strings stored in a variable
+    /// @return retrun the starting first character of the string
+    char GetReferenceDigitStringFirstCharacter(int string_number)
+    {
+        return (digit_string[string_number][0]);
+    }
+
+    /// @brief  get a reference digit string from a variable that holds the string
+    /// @param  string_number number corresponds to a digit string within the list of digit strings stored in a variable
+    /// @return retruns the address of the digit string
+    char* GetReferenceDigitString(int string_number)
+    {
+        return digit_string[string_number];
+    }
+
+    /// @brief  get a reference size of a digit string from a variable that holds the string
+    /// @param  string_number number corresponds to a digit string within the list of digit strings stored in a variable
+    /// @return returns the size of the digit string wanted
+    int GetReferenceDigitStringSize(int string_number)
+    {
+        return strlen(digit_string[string_number]);
+    }
 }
