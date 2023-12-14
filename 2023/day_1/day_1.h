@@ -4,8 +4,6 @@
 //! @author     Joseph Simeon
 //! @date       Created: 11/12/2023 19:48
 //! @url        https://github.com/josephsimeon/aoc/2023
-//!
-//! @date       Last updated: 12/12/2023 21:12
 
 #ifndef __DAY_1_H__
 #define __DAY_1_H__

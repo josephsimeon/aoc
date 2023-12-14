@@ -5,8 +5,6 @@
 //! @author     Joseph Simeon
 //! @date       Created: 11/12/2023 19:48
 //! @url        https://github.com/josephsimeon/aoc/common
-//!
-//! @date       Last updated: 12/12/2023 21:12
 
 #ifndef __PUZZLE_H__
 #define __PUZZLE_H__
