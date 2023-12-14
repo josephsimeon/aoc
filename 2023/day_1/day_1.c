@@ -1,5 +1,8 @@
 //! @file       day_1.c
-//! @brief      first part of the challenge is to find the first and last digit of each string and then sum them all together
+//! @brief      holds specific functions for the day_1 challenge
+//! @note       the challenge is to find the first and last digit of each string and then sum them all together
+//!             first part of the puzzle is to distinguish the character digits hidden in the string from alphabet
+//!             second part of the puzzle is to include strings that spell out digit names
 //!
 //! @author     Joseph Simeon
 //! @date       Created: 11/12/2023 19:48
@@ -86,4 +89,87 @@ int ProcessCharacterDigitsToInteger(puzzle_output_string_digits_t digits)
     }
     
     return converted_integer;
+}
+
+/// @brief  check if the character is the starting character of a specific string
+/// @param  character_to_check character to check if it is the starting character of specific string
+/// @return true or false
+/// @note   all characters within this puzzle are lowercase
+bool IsCharacterDigitTheStartOfASpecificString(char character_to_check)
+{
+    // specific strings: zero, one, two, three, four, five, six, seven, eight, nine
+    // checking against the starting character to these specific strings
+    return ((character_to_check == 'z') ||
+            (character_to_check == 'o') ||
+            (character_to_check == 't') ||
+            (character_to_check == 'f') ||
+            (character_to_check == 's') ||
+            (character_to_check == 'e') ||
+            (character_to_check == 'n'));
+}
+
+/// @brief  find the character digit that is spelled out in the string
+/// @param  pointer_to_puzzle_output pointer that holds the address of the puzzle output struct
+/// @param  string_position gives the position of the starting character of the possible
+/// @return digit character with an ascii value of '0' to '9' or nulled
+char FindCharacterDigitWithinString(puzzle_output_t* pointer_to_puzzle_output, int string_position)
+{
+    // todo
+    return NULLED_ASCII_CHARACTER;
+}
+
+/// @brief  if a digit was found spelled out in the string, move the position forward by the size of that string to save processing time
+/// @param  character_digit the character digit that was found
+/// @param  current_processing_position current position in the processing
+int MoveProcessingPositionBasedOnFoundDigitString(char character_digit, int current_processing_position)
+{
+    int new_position_offset;
+
+    switch (character_digit) {
+        case '0':
+            new_position_offset = strlen("zero");
+            break;
+
+        case '1':
+            new_position_offset = strlen("one");
+            break;
+
+        case '2':
+            new_position_offset = strlen("two");
+            break;
+
+        case '3':
+            new_position_offset = strlen("three");
+            break;
+
+        case '4':
+            new_position_offset = strlen("four");
+            break;
+
+        case '5':
+            new_position_offset = strlen("five");
+            break;
+
+        case '6':
+            new_position_offset = strlen("six");
+            break;
+
+        case '7':
+            new_position_offset = strlen("seven");
+            break;
+
+        case '8':
+            new_position_offset = strlen("eight");
+            break;
+
+        case '9':
+            new_position_offset = strlen("nine");
+            break;
+
+        default:
+            new_position_offset = NULLED_ASCII_CHARACTER;
+            break;
+    }
+
+    return (current_processing_position + new_position_offset);
 }

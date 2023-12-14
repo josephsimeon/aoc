@@ -1,5 +1,5 @@
 //! @file       day_1.h
-//! @brief      
+//! @brief      holds specific functions, defines, structs and enums for the day_1 challenge
 //!
 //! @author     Joseph Simeon
 //! @date       Created: 11/12/2023 19:48
@@ -39,9 +39,20 @@ void SaveFoundCharacterDigit(puzzle_output_string_digits_t* pointer_to_string_di
 /// @return an integer that is made up of two ascii numbers
 int ProcessCharacterDigitsToInteger(puzzle_output_string_digits_t digits);
 
-/// @brief  find
-char FindCharacterDigitBasedOnDigitStrinf(puzzle_output_t* pointer_to_puzzle_output, int string_position);
+/// @brief  check if the character is the starting character of a specific string
+/// @param  character_to_check character to check if it is the starting character of specific string
+/// @return true or false
+bool IsCharacterDigitTheStartOfASpecificString(char character_to_check);
 
-int MoveProcessingPositionBasedOnFoundDigitString(char character_digit, int string_position);
+/// @brief  find the character digit that is spelled out in the string
+/// @param  pointer_to_puzzle_output pointer that holds the address of the puzzle output struct
+/// @param  string_position gives the position of the starting character of the possible
+/// @return digit character with an ascii value of '0' to '9' or nulled
+char FindCharacterDigitWithinString(puzzle_output_t* pointer_to_puzzle_output, int string_position);
+
+/// @brief  if a digit was found spelled out in the string, move the position forward by the size of that string to save processing time
+/// @param  character_digit the character digit that was found
+/// @param  current_processing_position current position in the processing
+int MoveProcessingPositionBasedOnFoundDigitString(char character_digit, int current_processing_position);
 
 #endif // __DAY_1_H__

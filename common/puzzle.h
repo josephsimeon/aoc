@@ -1,6 +1,6 @@
 //! @file       puzzle.h
-//! @brief      This file holds common functions regarding retrieval and processing of
-//!             puzzle information in the more generic manor.
+//! @brief      This file holds common functions regarding retrieval and processing of puzzle information in the more generic 
+//!             manor.
 //!
 //! @author     Joseph Simeon
 //! @date       Created: 11/12/2023 19:48
