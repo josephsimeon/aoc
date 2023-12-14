@@ -100,34 +100,6 @@ int ProcessCharacterDigitsToInteger(puzzle_output_string_digits_t digits)
     return converted_integer;
 }
 
-/// @brief  find the character digit that is spelled out in the string
-/// @param  pointer_to_puzzle_output pointer that holds the address of the puzzle output struct
-/// @param  string_position gives the position of the starting character of the possible
-/// @return digit character with an ascii value of '0' to '9' or nulled
-char FindCharacterDigitWithinString(puzzle_output_t* pointer_to_puzzle_output, int string_position)
-{
-    for (int i = 0; i < 10; i++) {
-        if (pointer_to_puzzle_output->puzzle_string[string_position] == GetReferenceDigitStringFirstCharacter(i)) {
-            int string_compare_output = strncmp(&pointer_to_puzzle_output->puzzle_string[string_position], 
-                                                GetReferenceDigitString(i), 
-                                                GetReferenceDigitStringSize(i));
-            if (string_compare_output == 0) {
-                return (i + STARTING_ZERO_ASCII_VALUE);
-            }
-        }
-    }
-
-    return NULLED_ASCII_CHARACTER;
-}
-
-/// @brief  if a digit was found spelled out in the string, move the position forward by the size of that string to save processing time
-/// @param  character_digit the character digit that was found
-/// @param  current_processing_position current position in the processing
-int MoveProcessingPositionBasedOnFoundDigitString(char character_digit, int current_processing_position)
-{
-    return (current_processing_position + GetReferenceDigitStringSize(character_digit - STARTING_ZERO_ASCII_VALUE));
-}
-
 static char* digit_string[] = {
     "zero",
     "one",
@@ -183,4 +155,34 @@ bool IsCharacterDigitTheStartOfASpecificString(char character_to_check)
             (character_to_check == GetReferenceDigitStringFirstCharacter(7)) ||
             (character_to_check == GetReferenceDigitStringFirstCharacter(8)) ||
             (character_to_check == GetReferenceDigitStringFirstCharacter(9)));
+}
+
+/// @brief  find the character digit that is spelled out in the string
+/// @param  pointer_to_puzzle_output pointer that holds the address of the puzzle output struct
+/// @param  string_position gives the position of the starting character of the possible
+/// @return digit character with an ascii value of '0' to '9' or nulled
+char FindCharacterDigitWithinString(puzzle_output_t* pointer_to_puzzle_output, int string_position)
+{
+    for (int i = 0; i < 10; i++) {
+        if (pointer_to_puzzle_output->puzzle_string[string_position] == GetReferenceDigitStringFirstCharacter(i)) {
+            int string_compare_output = strncmp(&pointer_to_puzzle_output->puzzle_string[string_position], 
+                                                GetReferenceDigitString(i), 
+                                                GetReferenceDigitStringSize(i));
+            if (string_compare_output == 0) {
+                return (i + STARTING_ZERO_ASCII_VALUE);
+            }
+        }
+    }
+
+    return NULLED_ASCII_CHARACTER;
+}
+
+/// @brief  if a digit was found spelled out in the string, move the position forward by the size of that string to save processing time
+/// @param  character_digit the character digit that was found
+/// @param  current_processing_position current position in the processing
+int MoveProcessingPositionBasedOnFoundDigitString(char character_digit, int current_processing_position)
+{
+    // the returned value will be over the processing position by 1, minus 1 from the total number to set the processing position to the
+    // end of the string
+    return (current_processing_position + GetReferenceDigitStringSize(character_digit - STARTING_ZERO_ASCII_VALUE) - 1);
 }

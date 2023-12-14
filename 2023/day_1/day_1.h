@@ -38,17 +38,6 @@ void SaveFoundCharacterDigit(puzzle_output_string_digits_t* pointer_to_string_di
 /// @return an integer that is made up of two ascii numbers
 int ProcessCharacterDigitsToInteger(puzzle_output_string_digits_t digits);
 
-/// @brief  find the character digit that is spelled out in the string
-/// @param  pointer_to_puzzle_output pointer that holds the address of the puzzle output struct
-/// @param  string_position gives the position of the starting character of the possible
-/// @return digit character with an ascii value of '0' to '9' or nulled
-char FindCharacterDigitWithinString(puzzle_output_t* pointer_to_puzzle_output, int string_position);
-
-/// @brief  if a digit was found spelled out in the string, move the position forward by the size of that string to save processing time
-/// @param  character_digit the character digit that was found
-/// @param  current_processing_position current position in the processing
-int MoveProcessingPositionBasedOnFoundDigitString(char character_digit, int current_processing_position);
-
 /// @brief  get a reference digit string first character from a variable that holds the string
 /// @param  string_number number corresponds to a digit string within the list of digit strings stored in a variable
 /// @return retrun the starting first character of the string
@@ -67,6 +56,18 @@ int GetReferenceDigitStringSize(int string_number);
 /// @brief  check if the character is the starting character of a specific string
 /// @param  character_to_check character to check if it is the starting character of specific string
 /// @return true or false
+bool IsCharacterDigitTheStartOfASpecificString(char character_to_check);
+
+/// @brief  find the character digit that is spelled out in the string
+/// @param  pointer_to_puzzle_output pointer that holds the address of the puzzle output struct
+/// @param  string_position gives the position of the starting character of the possible
+/// @return digit character with an ascii value of '0' to '9' or nulled
+char FindCharacterDigitWithinString(puzzle_output_t* pointer_to_puzzle_output, int string_position);
+
+/// @brief  if a digit was found spelled out in the string, move the position forward by the size of that string to save processing time
+/// @param  character_digit the character digit that was found
+/// @param  current_processing_position current position in the processing
+int MoveProcessingPositionBasedOnFoundDigitString(char character_digit, int current_processing_position);
 bool IsCharacterDigitTheStartOfASpecificString(char character_to_check);
 
 #endif // __DAY_1_H__
