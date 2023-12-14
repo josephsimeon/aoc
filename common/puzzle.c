@@ -15,10 +15,8 @@
 puzzle_output_t puzzle_output; ///< global variable that stores the string of a puzzle as well as the length of that string
 
 /// @brief  error checking for the puzzle file pointer
-/// @param  pointer_to_puzzle_file the file pointer that holds the address to the puzzle
-///         file
-/// @note   checks whether or not the puzzle file is real, if the puzzle file is not real
-///         an error will be displayed and the program will be exited
+/// @param  pointer_to_puzzle_file the file pointer that holds the address to the puzzle file
+/// @note   checks whether or not the puzzle file is real, if the puzzle file is not real an error will be displayed and the program will be exited
 void CheckValidityOfPuzzleFile(FILE* pointer_to_puzzle_file)
 {
     if (pointer_to_puzzle_file == NULL) {
@@ -36,10 +34,8 @@ bool IsPuzzleFileStillValid(void)
 }
 
 /// @brief  getting string from the puzzle file
-/// @param  pointer_to_puzzle_file the file pointer that holds the address to the puzzle
-///         file
-/// @return puzzle output struct that holds the string from a line of the puzzel file and
-///         length
+/// @param  pointer_to_puzzle_file the file pointer that holds the address to the puzzle file
+/// @return puzzle output struct that holds the string from a line of the puzzel file and length
 /// @note   string length needs to be checked, it needs to be less than string length
 puzzle_output_t *GetStringFromPuzzleFile(FILE* pointer_to_puzzle_file)
 {
@@ -56,8 +52,7 @@ puzzle_output_t *GetStringFromPuzzleFile(FILE* pointer_to_puzzle_file)
 }
 
 /// @brief  error checking for the valid string length
-/// @param  pointer_to_puzzle_file the file pointer that holds the address to the puzzle
-///         file
+/// @param  pointer_to_puzzle_file the file pointer that holds the address to the puzzle file
 /// @note   exit if the string length reaches near max
 void CheckValidityOfPuzzleFileStringLength(FILE* pointer_to_puzzle_file)
 {
