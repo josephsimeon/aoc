@@ -1,5 +1,5 @@
 //! @file       main.c
-//! @brief      
+//! @brief      main file that access functions to complete the first day of 2023 aoc
 //!
 //! @author     Joseph Simeon
 //! @date       11/12/2023 19:48
