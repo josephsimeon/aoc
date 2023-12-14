@@ -43,9 +43,6 @@ puzzle_output_string_digits_t ProcessPuzzleStringToFindDigits(puzzle_output_t* p
                     if (possible_digit != NULLED_ASCII_CHARACTER) {
                         // save digit character
                         SaveFoundCharacterDigit(&digits, possible_digit);
-
-                        // move the loop's processing position by the size of the string
-                        i = MoveProcessingPositionBasedOnFoundDigitString(possible_digit, i);
                     }
                 }
             }
@@ -175,14 +172,4 @@ char FindCharacterDigitWithinString(puzzle_output_t* pointer_to_puzzle_output, i
     }
 
     return NULLED_ASCII_CHARACTER;
-}
-
-/// @brief  if a digit was found spelled out in the string, move the position forward by the size of that string to save processing time
-/// @param  character_digit the character digit that was found
-/// @param  current_processing_position current position in the processing
-int MoveProcessingPositionBasedOnFoundDigitString(char character_digit, int current_processing_position)
-{
-    // the returned value will be over the processing position by 1, minus 1 from the total number to set the processing position to the
-    // end of the string
-    return (current_processing_position + GetReferenceDigitStringSize(character_digit - STARTING_ZERO_ASCII_VALUE) - 1);
 }
