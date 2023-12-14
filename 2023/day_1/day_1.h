@@ -23,10 +23,9 @@ typedef struct {
 } puzzle_output_string_digits_t;
 
 /// @brief  processes the puzzle to return the digits found in the string
-/// @param  solution_part informs the function which solution part to find
 /// @param  pointer_to_puzzle_output pointer that holds the address of the puzzle output
 /// @return struct that holds the digits that were found after processing
-puzzle_output_string_digits_t ProcessPuzzleStringToFindDigits(Find_Solution_For_Puzzle_e solution_part, puzzle_output_t* pointer_to_puzzle_output);
+puzzle_output_string_digits_t ProcessPuzzleStringToFindDigits(puzzle_output_t* pointer_to_puzzle_output);
 
 /// @brief  find the digits based on the instructions for part one of the puzzle
 /// @param  pointer_to_string_digits pointer that holds the address of the puzzle output string digit struct
@@ -50,11 +49,6 @@ char FindCharacterDigitWithinString(puzzle_output_t* pointer_to_puzzle_output, i
 /// @param  current_processing_position current position in the processing
 int MoveProcessingPositionBasedOnFoundDigitString(char character_digit, int current_processing_position);
 
-/// @brief  check if the character is the starting character of a specific string
-/// @param  character_to_check character to check if it is the starting character of specific string
-/// @return true or false
-bool IsCharacterDigitTheStartOfASpecificString(char character_to_check);
-
 /// @brief  get a reference digit string first character from a variable that holds the string
 /// @param  string_number number corresponds to a digit string within the list of digit strings stored in a variable
 /// @return retrun the starting first character of the string
@@ -69,5 +63,10 @@ char* GetReferenceDigitString(int string_number);
 /// @param  string_number number corresponds to a digit string within the list of digit strings stored in a variable
 /// @return returns the size of the digit string wanted
 int GetReferenceDigitStringSize(int string_number);
+
+/// @brief  check if the character is the starting character of a specific string
+/// @param  character_to_check character to check if it is the starting character of specific string
+/// @return true or false
+bool IsCharacterDigitTheStartOfASpecificString(char character_to_check);
 
 #endif // __DAY_1_H__

@@ -31,7 +31,7 @@ puzzle_output_string_digits_t ProcessPuzzleStringToFindDigits(puzzle_output_t* p
     for(int i = 0; i < pointer_to_puzzle_output->puzzle_string_len; i++) {
         // process through the string
         if (IsCharFromPuzzleFileADigit(pointer_to_puzzle_output->puzzle_string[i])) {
-            SaveFoundCharacterDigit(digits, pointer_to_puzzle_output->puzzle_string[i]);
+            SaveFoundCharacterDigit(&digits, pointer_to_puzzle_output->puzzle_string[i]);
         } else if (IsCharFromPuzzleFileAnAlpha(pointer_to_puzzle_output->puzzle_string[i])) {
             // check that the define to process for part 2 is active
             if (PROCESS_PUZZLE_OUTPUT_FOR_PART_2) {
@@ -96,11 +96,11 @@ int ProcessCharacterDigitsToInteger(puzzle_output_string_digits_t digits)
 /// @param  pointer_to_puzzle_output pointer that holds the address of the puzzle output struct
 /// @param  string_position gives the position of the starting character of the possible
 /// @return digit character with an ascii value of '0' to '9' or nulled
-char FindCharacterDigitWithinString(puzzle_output_t* pointer_to_puzzle_output, int string_position);
+char FindCharacterDigitWithinString(puzzle_output_t* pointer_to_puzzle_output, int string_position)
 {
     for (int i = 0; i < 10; i++) {
         if (pointer_to_puzzle_output->puzzle_string[string_position] == GetReferenceDigitStringFirstCharacter(i)) {
-            int string_compare_output = strncmp(pointer_to_puzzle_output->puzzle_string[string_position], 
+            int string_compare_output = strncmp(&pointer_to_puzzle_output->puzzle_string[string_position], 
                                                 GetReferenceDigitString(i), 
                                                 GetReferenceDigitStringSize(i));
             if (string_compare_output == 0) {
@@ -120,61 +120,59 @@ int MoveProcessingPositionBasedOnFoundDigitString(char character_digit, int curr
     return (current_processing_position + GetReferenceDigitStringSize(character_digit - STARTING_ZERO_ASCII_VALUE));
 }
 
+static char* digit_string[] = {
+    "zero",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine"
+};
+
+/// @brief  get a reference digit string first character from a variable that holds the string
+/// @param  string_number number corresponds to a digit string within the list of digit strings stored in a variable
+/// @return retrun the starting first character of the string
+char GetReferenceDigitStringFirstCharacter(int string_number)
 {
-    static char digit_string[] = {
-        "zero",
-        "one",
-        "two",
-        "three",
-        "four",
-        "five",
-        "six",
-        "seven",
-        "eight",
-        "nine"
-    };
+    return (digit_string[string_number][0]);
+}
 
-    /// @brief  check if the character is the starting character of a specific string
-    /// @param  character_to_check character to check if it is the starting character of specific string
-    /// @return true or false
-    /// @note   all characters within this puzzle are lowercase
-    bool IsCharacterDigitTheStartOfASpecificString(char character_to_check)
-    {
-        // specific strings: zero, one, two, three, four, five, six, seven, eight, nine
-        // checking against the starting character to these specific strings
-        return ((character_to_check == GetReferenceDigitStringFirstCharacter(0)) ||
-                (character_to_check == GetReferenceDigitStringFirstCharacter(1)) ||
-                (character_to_check == GetReferenceDigitStringFirstCharacter(2)) ||
-                (character_to_check == GetReferenceDigitStringFirstCharacter(3)) ||
-                (character_to_check == GetReferenceDigitStringFirstCharacter(4)) ||
-                (character_to_check == GetReferenceDigitStringFirstCharacter(5)) ||
-                (character_to_check == GetReferenceDigitStringFirstCharacter(6)) ||
-                (character_to_check == GetReferenceDigitStringFirstCharacter(7)) ||
-                (character_to_check == GetReferenceDigitStringFirstCharacter(8)) ||
-                (character_to_check == GetReferenceDigitStringFirstCharacter(9)));
-    }
+/// @brief  get a reference digit string from a variable that holds the string
+/// @param  string_number number corresponds to a digit string within the list of digit strings stored in a variable
+/// @return retruns the address of the digit string
+char* GetReferenceDigitString(int string_number)
+{
+    return digit_string[string_number];
+}
 
-    /// @brief  get a reference digit string first character from a variable that holds the string
-    /// @param  string_number number corresponds to a digit string within the list of digit strings stored in a variable
-    /// @return retrun the starting first character of the string
-    char GetReferenceDigitStringFirstCharacter(int string_number)
-    {
-        return (digit_string[string_number][0]);
-    }
+/// @brief  get a reference size of a digit string from a variable that holds the string
+/// @param  string_number number corresponds to a digit string within the list of digit strings stored in a variable
+/// @return returns the size of the digit string wanted
+int GetReferenceDigitStringSize(int string_number)
+{
+    return strlen(digit_string[string_number]);
+}
 
-    /// @brief  get a reference digit string from a variable that holds the string
-    /// @param  string_number number corresponds to a digit string within the list of digit strings stored in a variable
-    /// @return retruns the address of the digit string
-    char* GetReferenceDigitString(int string_number)
-    {
-        return digit_string[string_number];
-    }
-
-    /// @brief  get a reference size of a digit string from a variable that holds the string
-    /// @param  string_number number corresponds to a digit string within the list of digit strings stored in a variable
-    /// @return returns the size of the digit string wanted
-    int GetReferenceDigitStringSize(int string_number)
-    {
-        return strlen(digit_string[string_number]);
-    }
+/// @brief  check if the character is the starting character of a specific string
+/// @param  character_to_check character to check if it is the starting character of specific string
+/// @return true or false
+/// @note   all characters within this puzzle are lowercase
+bool IsCharacterDigitTheStartOfASpecificString(char character_to_check)
+{
+    // specific strings: zero, one, two, three, four, five, six, seven, eight, nine
+    // checking against the starting character to these specific strings
+    return ((character_to_check == GetReferenceDigitStringFirstCharacter(0)) ||
+            (character_to_check == GetReferenceDigitStringFirstCharacter(1)) ||
+            (character_to_check == GetReferenceDigitStringFirstCharacter(2)) ||
+            (character_to_check == GetReferenceDigitStringFirstCharacter(3)) ||
+            (character_to_check == GetReferenceDigitStringFirstCharacter(4)) ||
+            (character_to_check == GetReferenceDigitStringFirstCharacter(5)) ||
+            (character_to_check == GetReferenceDigitStringFirstCharacter(6)) ||
+            (character_to_check == GetReferenceDigitStringFirstCharacter(7)) ||
+            (character_to_check == GetReferenceDigitStringFirstCharacter(8)) ||
+            (character_to_check == GetReferenceDigitStringFirstCharacter(9)));
 }
