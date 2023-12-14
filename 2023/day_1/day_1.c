@@ -35,11 +35,19 @@ puzzle_output_string_digits_t ProcessPuzzleStringToFindDigits(puzzle_output_t* p
         } else if (IsCharFromPuzzleFileAnAlpha(pointer_to_puzzle_output->puzzle_string[i])) {
             // check that the define to process for part 2 is active
             if (PROCESS_PUZZLE_OUTPUT_FOR_PART_2) {
-                // TODO
                 // check that the letter associates with a particular word
-                // wait for buffer to be filled based on that word
-                // check against the saved buffer
-                // if the buffer and word is confirmed, save found digit as character
+                if (IsCharacterDigitTheStartOfASpecificString(pointer_to_puzzle_output->puzzle_string[i])) {
+                    // find the possible digit character within the string
+                    char possible_digit = FindCharacterDigitWithinString(pointer_to_puzzle_output, i);
+                    // check if the possible digit is not nulled
+                    if (possible_digit != NULLED_ASCII_CHARACTER) {
+                        // save digit character
+                        SaveFoundCharacterDigit(&digits, possible_digit);
+
+                        // move the loop's processing position by the size of the string
+                        i = MoveProcessingPositionBasedOnFoundDigitString(possible_digit, i);
+                    }
+                }
             }
         } else {
             // the character is not an alpha or number, do nothing
