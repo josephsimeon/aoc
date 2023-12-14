@@ -160,6 +160,7 @@ bool IsCharacterDigitTheStartOfASpecificString(char character_to_check)
 /// @return digit character with an ascii value of '0' to '9' or nulled
 char FindCharacterDigitWithinString(puzzle_output_t* pointer_to_puzzle_output, int string_position)
 {
+    // loop through the 10 possible digits from 0 to 9
     for (int i = 0; i < 10; i++) {
         if (pointer_to_puzzle_output->puzzle_string[string_position] == GetReferenceDigitStringFirstCharacter(i)) {
             int string_compare_output = strncmp(&pointer_to_puzzle_output->puzzle_string[string_position], 
